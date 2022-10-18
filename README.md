@@ -1,5 +1,11 @@
 # Tic Tac Toe
 
+
+## Role
+
+Scrum facilitator/DevOps - Sumithra
+User Experience lead/Q&A  - Alex
+
 ## User Stories
 
 - As a user I want to be able to to play Tic Tac Toe against the computer.
