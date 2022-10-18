@@ -1,4 +1,10 @@
-# week5-Alex-Sumithra-ClientReactApp
+# Tic Tac Toe
+
+## User Stories
+
+- As a user I want to be able to to play Tic Tac Toe against the computer.
+- As a competetive user I want to be able to see the scoreboard.
+- As a social user I want to be able to play against my friends. 
 
 ## Criteria
  - [ ] Accept at least 2 kinds of user input
