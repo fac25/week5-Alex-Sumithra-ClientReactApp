@@ -22,6 +22,7 @@ User Experience lead/Q&A  - Alex
 ## Stretch criteria
 
 - [ ] Save your state to localstorage so you can leave the page and come back later
-    Make it look great
+   
+- [ ] Make it look great
 
     
