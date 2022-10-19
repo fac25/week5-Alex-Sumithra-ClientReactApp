@@ -4,7 +4,8 @@
 ## Role
 
 Scrum facilitator/DevOps - Sumithra
-User Experience lead/Q&A  - Alex
+
+User Experience lead/QA  - Alex
 
 ## User Stories
 
