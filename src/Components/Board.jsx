@@ -1,17 +1,26 @@
-import Square from "./Square";
 
-export default function Board({ onClick }) {
+import { useState } from "react";
+
+export default function Board() {
+
+  const [squares, setSquares] = useState(Array(9).fill(''));
+  
+  function handleClick(i){
+    console.log(i);
+  }
+
   return (
     <div className="board">
-      <Square handleClick={onClick} value={1} />
-      <Square handleClick={onClick} value={2} />
-      <Square handleClick={onClick} value={3} />
-      <Square handleClick={onClick} value={4} />
-      <Square handleClick={onClick} value={5} />
-      <Square handleClick={onClick} value={6} />
-      <Square handleClick={onClick} value={7} />
-      <Square handleClick={onClick} value={8} />
-      <Square handleClick={onClick} value={9} />
+      {squares.map((square, i) => {
+        return (
+          // <Square key={i}  value={square} />
+          // Learnt that to pass param to function it has to be within an arrow function.
+          <button className="square" key={i} onClick={() => handleClick(i)}>
+            {square[i]}
+        </button>
+        );
+        })
+      }
     </div>
   );
 }
