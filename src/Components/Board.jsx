@@ -27,7 +27,7 @@ export default function Board({ names }) {
 
   function handleClick(i) {
     // If square is occupied don't let it be clicked on
-    if (squares[i] != "") {
+    if (squares[i] != "" || winner) {
       return;
     }
     // Find the players turn and update the clicked square with 'X' or 'O'. Updates existing array
