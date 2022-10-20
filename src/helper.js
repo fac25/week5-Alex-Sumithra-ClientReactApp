@@ -17,21 +17,9 @@ function calculateWinner(squares) {
       return squares[a];
     }
   }
-  let count = 0;
-  squares.map((square) => {
-    //
-    // console.log(square);
-    if (square !== null) {
-      count++;
-    }
-  });
-  //   let count = 0;
-  //   for (let i = 0; i < squares.length; i++) {
-  //     if (squares[i] !== null) {
-  //       count++;
-  //     }
-  //   }
-  if (count === 9) return "tie";
+
+  if (!squares.includes(null)) return "tie";
+
   return null;
 }
 

@@ -3,6 +3,10 @@ import Scoreboard from "./Scoreboard";
 import { useState, useEffect } from "react";
 
 export default function Board({ names }) {
+  // ==================================================
+  // Use states
+  // ==================================================
+
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   const [count, setCount] = useState(0);
@@ -13,6 +17,30 @@ export default function Board({ names }) {
 
   const [score, setScore] = useState(Array(3).fill(0));
 
+  // ==================================================
+  // Use effects
+  // ==================================================
+
+  useEffect(() => {
+    let turn = findTurn();
+    setPlayer(turn === "X" ? names[0] : names[1]);
+  }, [count]);
+
+  useEffect(() => {
+    let winnerName = calculateWinner(squares);
+    setScoreBoard(winnerName);
+    setWinner(winOrTie(winnerName));
+  }, [squares]);
+
+  // ==================================================
+  // Helper Functions
+  // ==================================================
+
+  const findTurn = () => (count % 2 === 0 ? "X" : "O");
+
+  // ==================================================
+  // setScoreBoard
+  // ==================================================
   function setScoreBoard(winnerName) {
     let scoreCopy = [...score];
     switch (winnerName) {
@@ -34,6 +62,10 @@ export default function Board({ names }) {
     }
   }
 
+  // ==================================================
+  // winOrTie
+  // ==================================================
+
   function winOrTie(winnerName) {
     let winningPlayer = null;
     switch (winnerName) {
@@ -53,19 +85,9 @@ export default function Board({ names }) {
     return winningPlayer;
   }
 
-  useEffect(() => {
-    let turn = findTurn();
-    setPlayer(turn === "X" ? names[0] : names[1]);
-  }, [count]);
-
-  useEffect(() => {
-    let winnerName = calculateWinner(squares);
-    setScoreBoard(winnerName);
-    console.log(winnerName);
-    setWinner(winOrTie(winnerName));
-  }, [squares]);
-
-  const findTurn = () => (count % 2 === 0 ? "X" : "O");
+  // ==================================================
+  // handleClick
+  // ==================================================
 
   function handleClick(i) {
     // If square is occupied don't let it be clicked on
@@ -80,10 +102,11 @@ export default function Board({ names }) {
     // update the clicked count value
     // This in turn will update the player-useState using useEffect
     setCount(() => count + 1);
-
-    // Check for winner
-    // If
   }
+
+  // ==================================================
+  // showWinner
+  // ==================================================
 
   function showWinner() {
     if (winner === "tie") {
@@ -94,6 +117,9 @@ export default function Board({ names }) {
       return;
     }
   }
+  // ==================================================
+  // resetGame
+  // ==================================================
 
   function resetGame() {
     setSquares(Array(9).fill(null));
