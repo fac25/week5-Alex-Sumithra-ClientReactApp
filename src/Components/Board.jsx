@@ -1,21 +1,26 @@
 import calculateWinner from "../helper";
 import { useState, useEffect } from "react";
 
-export default function Board() {
+export default function Board({ names }) {
   const [squares, setSquares] = useState(Array(9).fill(""));
 
   const [count, setCount] = useState(0);
 
-  const [player, setPlayer] = useState("X");
+  const [player, setPlayer] = useState(names[0]);
 
   const [winner, setWinner] = useState("");
 
   useEffect(() => {
-    setPlayer(findTurn());
+    let turn = findTurn();
+    setPlayer(turn === "X" ? names[0] : names[1]);
   }, [count]);
 
   useEffect(() => {
-    setWinner(calculateWinner(squares));
+    const winnerName = calculateWinner(squares);
+
+    setWinner(
+      winnerName === null ? null : winnerName === "X" ? names[0] : names[1]
+    );
   }, [squares]);
 
   const findTurn = () => (count % 2 === 0 ? "X" : "O");
@@ -41,7 +46,7 @@ export default function Board() {
   function resetGame() {
     setSquares(Array(9).fill(""));
     setCount(0);
-    setPlayer("X");
+    setPlayer("");
     setWinner("");
   }
 
