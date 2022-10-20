@@ -1,5 +1,6 @@
 import Board from "./Board";
 import NameInput from "./NameInput";
+
 import { useState } from "react";
 
 export default function Game() {

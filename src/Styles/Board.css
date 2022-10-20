@@ -1,0 +1,24 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  width: 15rem;
+  height: 15rem;
+  margin-top: 3rem;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.showWinner {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.playAgain {
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-radius: 20px;
+}
