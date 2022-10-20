@@ -1,17 +1,14 @@
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 0 auto;
-  width: 15rem;
-  height: 15rem;
+@import "./Styles/Board.css";
+@import "./Styles/NameInput.css";
+@import "./Styles/Scoreboard.css";
+@import "./Styles/Square.css";
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.square {
-  width: 5rem;
-  font-size: 2rem;
-  height: 5rem;
-}
-
-.square:hover {
-  cursor: pointer;
+body {
+  background-color: black;
+  color: white;
 }

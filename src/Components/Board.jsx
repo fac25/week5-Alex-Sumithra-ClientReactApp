@@ -1,6 +1,7 @@
 import calculateWinner from "../helper";
 import Scoreboard from "./Scoreboard";
 import Square from "./Square";
+// import "../Styles/Board.css";
 import { useState, useEffect } from "react";
 
 export default function Board({ names }) {
@@ -12,7 +13,7 @@ export default function Board({ names }) {
 
   const [count, setCount] = useState(0); // count is used to decide the player based on Odd or Even
 
-  const [player, setPlayer] = useState(names[0]); // Current Player name 
+  const [player, setPlayer] = useState(names[0]); // Current Player name
 
   const [winner, setWinner] = useState(""); // Winner can be 'X' 'O' or 'Tie'
 
@@ -126,17 +127,18 @@ export default function Board({ names }) {
 
   return (
     <div>
-      <h2 style={{ display: winner ? "none" : "block" }}>Turn {player}</h2>
       <div className="board">
-        <Square squares={squares} handleClick = {handleClick} />
+        <Square squares={squares} handleClick={handleClick} />
       </div>
-      <p>{showWinner()}</p>
+      <p className="showWinner">{showWinner()}</p>
       <button
+        className="playAgain"
         style={{ display: winner ? "block" : "none" }}
         onClick={resetGame}
       >
         Play Again
       </button>
+      <h2 style={{ display: winner ? "none" : "block" }}>Turn {player}</h2>
       <Scoreboard players={names} score={score} />
     </div>
   );

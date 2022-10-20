@@ -11,10 +11,11 @@ export default function NameInput({ setNames, names }) {
     return user.charAt(0).toUpperCase() + user.slice(1);
   }
   return (
-    <>
+    <div className="formContainer">
       <h1>Tic Tac Toe</h1>
+      <p id="nameLength">Enter your names: Maximum of 15 characters.</p>
       <form onSubmit={updateName}>
-        <label htmlFor="playerOneName">Player One's Name</label>
+        <label htmlFor="playerOneName">Player 1</label>
         <input
           id="userOne"
           name="userOne"
@@ -22,11 +23,12 @@ export default function NameInput({ setNames, names }) {
           aria-label="playerOneName"
           aria-describedby="nameLength"
           maxLength={15}
+          placeholder="Enter your name"
           required
         />
-        <p id="nameLength">Maximum 15 characters</p>
         <br />
-        <label htmlFor="playerTwoName">Player Two's Name</label>
+        <br />
+        <label htmlFor="playerTwoName">Player 2</label>
         <input
           id="userTwo"
           name="userTwo"
@@ -34,11 +36,13 @@ export default function NameInput({ setNames, names }) {
           aria-label="playerTwoName"
           aria-describedby="nameLength"
           maxLength={15}
+          placeholder="Enter your name"
           required
         />
-        <p id="nameLength">Maximum 15 characters</p>
-        <button type="submit">Submit</button>
+        <br />
+        <br />
+        <button type="submit">Play</button>
       </form>
-    </>
+    </div>
   );
 }

@@ -6,9 +6,11 @@ export default function Scoreboard({ players, score }) {
         <h3>Tie</h3>
         <h3>{players[1]}</h3>
       </div>
-      <p>{score[0]}</p>
-      <p>{score[1]}</p>
-      <p>{score[2]}</p>
+      <div className="scores">
+        <p>{score[0]}</p>
+        <p>{score[1]}</p>
+        <p>{score[2]}</p>
+      </div>
     </>
   );
 }
