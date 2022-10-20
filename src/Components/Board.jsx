@@ -1,5 +1,6 @@
 import calculateWinner from "../helper";
 import Scoreboard from "./Scoreboard";
+import Square from "./Square";
 import { useState, useEffect } from "react";
 
 export default function Board({ names }) {
@@ -7,23 +8,22 @@ export default function Board({ names }) {
   // Use states
   // ==================================================
 
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  const [squares, setSquares] = useState(Array(9).fill(null)); // array of 9 squares to display the tic-tac-toe board
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0); // count is used to decide the player based on Odd or Even
 
-  const [player, setPlayer] = useState(names[0]);
+  const [player, setPlayer] = useState(names[0]); // Current Player name 
 
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState(""); // Winner can be 'X' 'O' or 'Tie'
 
-  const [score, setScore] = useState(Array(3).fill(0));
+  const [score, setScore] = useState(Array(3).fill(0)); // To record the scores
 
   // ==================================================
   // Use effects
   // ==================================================
 
   useEffect(() => {
-    let turn = findTurn();
-    setPlayer(turn === "X" ? names[0] : names[1]);
+    setPlayer(findTurn() === "X" ? names[0] : names[1]);
   }, [count]);
 
   useEffect(() => {
@@ -45,21 +45,16 @@ export default function Board({ names }) {
     let scoreCopy = [...score];
     switch (winnerName) {
       case "X":
-        // Player 1 score increases by 1
         scoreCopy[0] += 1;
-        setScore(scoreCopy);
         break;
       case "O":
         scoreCopy[2] += 1;
-        setScore(scoreCopy);
-        //Player 2 score increases by 1
         break;
       case "tie":
         scoreCopy[1] += 1;
-        setScore(scoreCopy);
         break;
-      // Case tie increases by 1
     }
+    setScore(scoreCopy);
   }
 
   // ==================================================
@@ -70,16 +65,13 @@ export default function Board({ names }) {
     let winningPlayer = null;
     switch (winnerName) {
       case "X":
-        winningPlayer = "X";
+        winningPlayer = names[0];
         break;
       case "O":
-        winningPlayer = "O";
+        winningPlayer = names[1];
         break;
       case "tie":
         winningPlayer = "tie";
-        break;
-      default:
-        winningPlayer = null;
         break;
     }
     return winningPlayer;
@@ -90,7 +82,8 @@ export default function Board({ names }) {
   // ==================================================
 
   function handleClick(i) {
-    // If square is occupied don't let it be clicked on
+    // console.log("Player usestate ", player);
+    // If square is occupied or if there is any winner don't let it be clicked on
     if (squares[i] != null || winner) {
       return;
     }
@@ -102,6 +95,8 @@ export default function Board({ names }) {
     // update the clicked count value
     // This in turn will update the player-useState using useEffect
     setCount(() => count + 1);
+
+    // Winner will be caluclated by useEffect
   }
 
   // ==================================================
@@ -109,6 +104,7 @@ export default function Board({ names }) {
   // ==================================================
 
   function showWinner() {
+    // console.log(winner)
     if (winner === "tie") {
       return `Tie`;
     } else if (winner) {
@@ -132,16 +128,7 @@ export default function Board({ names }) {
     <div>
       <h2 style={{ display: winner ? "none" : "block" }}>Turn {player}</h2>
       <div className="board">
-        {/* draw board */}
-        {squares.map((square, i) => {
-          return (
-            // <Square key={i}  value={square} />
-            // Learnt that to pass param to function it has to be within an arrow function.
-            <button className="square" key={i} onClick={() => handleClick(i)}>
-              {square}
-            </button>
-          );
-        })}
+        <Square squares={squares} handleClick = {handleClick} />
       </div>
       <p>{showWinner()}</p>
       <button
