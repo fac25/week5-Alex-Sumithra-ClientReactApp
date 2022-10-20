@@ -11,7 +11,7 @@ export default function Game() {
         <NameInput setNames={setNames} names={names} />
       ) : (
         <>
-          <Board />
+          <Board names={names} />
         </>
       )}
     </div>
