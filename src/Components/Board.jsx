@@ -32,7 +32,7 @@ export default function Board({ names }) {
     return element === null;
   }).length;
 
-  const findTurn = () => (count % 2 === 0 ? "X" : "O");
+  const findTurn = () => (count % 2 === 0 ? "O" : "X");
   const player = count % 2 === 0 ? names[0] : names[1];
 
   // ==================================================
