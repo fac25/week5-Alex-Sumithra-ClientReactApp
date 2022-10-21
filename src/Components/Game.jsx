@@ -11,9 +11,7 @@ export default function Game() {
       {names[0] === "" ? (
         <NameInput setNames={setNames} names={names} />
       ) : (
-        <>
-          <Board names={names} />
-        </>
+        <Board names={names} />
       )}
     </div>
   );

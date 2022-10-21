@@ -29,7 +29,7 @@ export default function Board({ names }) {
 
   useEffect(() => {
     let winnerName = calculateWinner(squares);
-    setScoreBoard(winnerName);
+    updateScoreBoard(winnerName);
     setWinner(winOrTie(winnerName));
   }, [squares]);
 
@@ -40,9 +40,9 @@ export default function Board({ names }) {
   const findTurn = () => (count % 2 === 0 ? "X" : "O");
 
   // ==================================================
-  // setScoreBoard
+  // updateScoreBoard
   // ==================================================
-  function setScoreBoard(winnerName) {
+  function updateScoreBoard(winnerName) {
     let scoreCopy = [...score];
     switch (winnerName) {
       case "X":
