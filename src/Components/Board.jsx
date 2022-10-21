@@ -11,10 +11,6 @@ export default function Board({ names }) {
 
   const [squares, setSquares] = useState(Array(9).fill(null)); // array of 9 squares to display the tic-tac-toe board
 
-  const [count, setCount] = useState(0); // count is used to decide the player based on Odd or Even
-
-  const [player, setPlayer] = useState(names[0]); // Current Player name
-
   const [winner, setWinner] = useState(""); // Winner can be 'X' 'O' or 'Tie'
 
   const [score, setScore] = useState(Array(3).fill(0)); // To record the scores
@@ -22,10 +18,6 @@ export default function Board({ names }) {
   // ==================================================
   // Use effects
   // ==================================================
-
-  useEffect(() => {
-    setPlayer(findTurn() === "X" ? names[0] : names[1]);
-  }, [count]);
 
   useEffect(() => {
     let winnerName = calculateWinner(squares);
@@ -36,8 +28,12 @@ export default function Board({ names }) {
   // ==================================================
   // Helper Functions
   // ==================================================
+  const count = squares.filter((element) => {
+    return element === null;
+  }).length;
 
   const findTurn = () => (count % 2 === 0 ? "X" : "O");
+  const player = count % 2 === 0 ? names[0] : names[1];
 
   // ==================================================
   // updateScoreBoard
@@ -95,7 +91,7 @@ export default function Board({ names }) {
 
     // update the clicked count value
     // This in turn will update the player-useState using useEffect
-    setCount(() => count + 1);
+    // setCount(() => count + 1);
 
     // Winner will be caluclated by useEffect
   }
@@ -120,8 +116,8 @@ export default function Board({ names }) {
 
   function resetGame() {
     setSquares(Array(9).fill(null));
-    setCount(0);
-    setPlayer("");
+    // setCount(0);
+    // setPlayer("");
     setWinner("");
   }
 
